@@ -16,7 +16,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('roles')->insert([
+            'role' => 'Administrador',
+        ]);
+
+        DB::table('roles')->insert([
+            'role' => 'Empleado',
+        ]);
+        
         DB::table('users')->insert([
+            'role_id'   => 1,
             'name'      => 'Janathan Medero Pineda',
             'slug'      =>  Str::slug('Janathan Medero Pineda'),
             'email'     => 'webmaster@pyscom.com',
