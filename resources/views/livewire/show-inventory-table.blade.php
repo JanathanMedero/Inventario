@@ -24,10 +24,12 @@
             </div>
             <div class="col-md-8 d-flex justify-content-end">
                 <div>
-                    <button type="button" class="btn btn-success text-white" data-toggle="modal" data-target="#create-product">
-                        <span class="btn-inner--icon"><i class="fas fa-box"></i></span>
-                        <span class="btn-inner--text">Agregar Producto</span>
-                    </button>
+                    <a href="{{ route('inventory.create') }}">
+                        <button type="button" class="btn btn-success text-white">
+                            <span class="btn-inner--icon"><i class="fas fa-box"></i></span>
+                            <span class="btn-inner--text">Agregar Producto</span>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>

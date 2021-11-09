@@ -23,7 +23,7 @@ class InventoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.inventory.create');
     }
 
     /**
