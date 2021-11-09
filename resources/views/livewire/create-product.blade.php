@@ -2,10 +2,9 @@
 	<x-card>
 		<h1 class="mb-0">Ingrese los datos del producto</h1>
 	</x-card>
-
 	<x-card>
-		
-		<form>
+		<form action="{{ route('inventory.store') }}">
+			@csrf
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
@@ -115,9 +114,6 @@
 					</button>
 				</div>
 			</div>
-
 		</form>
-
 	</x-card>
-
 </div>
