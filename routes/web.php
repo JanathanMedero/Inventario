@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InventoryController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -20,4 +21,8 @@ Route::middleware(['auth'])->group(function () {
 
     //Empleados
     Route::get('empleados', [EmployeController::class, 'index'])->name('employe.index');
+
+    //Inventario
+    Route::get('inventario', [InventoryController::class, 'index'])->name('inventory.index');
+    Route::get('inventario/nuevo-producto', [InventoryController::class, 'create'])->name('inventory.create');
 });

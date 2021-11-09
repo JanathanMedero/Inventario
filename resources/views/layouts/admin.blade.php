@@ -55,27 +55,9 @@
 						</li>
 						@endif
 						<li class="nav-item {{ Request::is('clients') ? 'active_page' : '' }}">
-							<a class="nav-link" href="#">
-								<i class="fas fa-users {{ Request::is('clients') ? 'text-white' : 'text-info' }}"></i>
-								<span class="nav-link-text {{ Request::is('clients') ? 'text-white' : '' }}">Clientes</span>
-							</a>
-						</li>
-						<li class="nav-item {{ Request::is('table-orders-sale') ? 'active_page' : '' }}">
-							<a class="nav-link" href="#">
-								<i class="fas fa-dollar-sign {{ Request::is('table-orders-sale') ? 'text-white' : 'text-success' }}"></i>
-								<span class="nav-link-text {{ Request::is('table-orders-sale') ? 'text-white' : '' }}">Ordenes de venta</span>
-							</a>
-						</li>
-						<li class="nav-item {{ Request::is('table-orders-services') ? 'active_page' : '' }}">
-							<a class="nav-link" href="#">
-								<i class="fas fa-concierge-bell {{ Request::is('table-orders-services') ? 'text-white' : 'text-muted' }}"></i>
-								<span class="nav-link-text {{ Request::is('table-orders-services') ? 'text-white' : '' }}">Ordenes de servicio</span>
-							</a>
-						</li>
-						<li class="nav-item {{ Request::is('table-orders-services-on-site') ? 'active_page' : '' }}">
-							<a class="nav-link" href="#">
-								<i class="fas fa-city text-danger {{ Request::is('table-orders-services-on-site') ? 'text-white' : 'text-danger' }}"></i>
-								<span class="nav-link-text {{ Request::is('table-orders-services-on-site') ? 'text-white' : '' }}">Ordenes de servicio en sitio</span>
+							<a class="nav-link" href="{{ route('inventory.index') }}">
+								<i class="fas fa-boxes {{ Request::is('clients') ? 'text-white' : 'text-info' }}"></i>
+								<span class="nav-link-text {{ Request::is('clients') ? 'text-white' : '' }}">Inventario</span>
 							</a>
 						</li>
 					</ul>
