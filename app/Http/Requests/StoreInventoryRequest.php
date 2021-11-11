@@ -50,10 +50,10 @@ class StoreInventoryRequest extends FormRequest
             'existence_virrey.required' => 'Ingrese las existencias que hay en virrey',
             'pyscom_price.required'     => 'Ingrese la inversión de Pyscom',
             'model.required'            => 'Ingrese el modelo del producto',
-            'general_existence'         => 'Error al calcular la cantidad total',
-            'price_2x1'                 => 'Error al calcular el precio al 2x1',
-            'gain_2x1'                  => 'Error al calcular la ganancia al 2x1',
-            'normal_gain'               => 'Error al calcular la ganancia normal',
+            'general_existence.required'         => 'Error al calcular la cantidad total',
+            'price_2x1.required'                 => 'Error al calcular el precio al 2x1',
+            'gain_2x1.required'                  => 'Error al calcular la ganancia al 2x1',
+            'normal_gain.required'               => 'Error al calcular la ganancia normal',
         ];
     }
 
