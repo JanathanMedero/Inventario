@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreInventoryRequest;
 use Illuminate\Http\Request;
 
 class InventoryController extends Controller
@@ -32,9 +33,9 @@ class InventoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreInventoryRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**

@@ -3,7 +3,7 @@
 		<h1 class="mb-0">Ingrese los datos del producto</h1>
 	</x-card>
 	<x-card>
-		<form action="{{ route('inventory.store') }}">
+		<form action="{{ route('inventory.store') }}" method="POST">
 			@csrf
 			<div class="row">
 				<div class="col-md-4">
@@ -20,8 +20,8 @@
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="dealer_price">Distribuidores</label>
-						<input type="number" class="form-control" id="dealer_price" placeholder="Ingrese el precio a distribuidores" name="dealer_price">
+						<label for="dealers">Distribuidores</label>
+						<input type="number" class="form-control" id="dealers" placeholder="Ingrese el precio a distribuidores" name="dealers">
 					</div>
 				</div>
 			</div>
@@ -64,13 +64,13 @@
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="sat_key">Clave SAT</label>
+						<label for="sat_key">Clave SAT - Opcional</label>
 						<input type="text" class="form-control" id="sat_key" placeholder="Ingrese la clave SAT" name="sat_key">
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="sat_description">Descripción SAT</label>
+						<label for="sat_description">Descripción SAT - Opcional</label>
 						<input type="text" class="form-control" id="sat_description" placeholder="Ingrese la descripción del SAT" name="sat_description">
 					</div>
 				</div>
@@ -82,8 +82,8 @@
 				</div>
 				<div class="col-md-3">
 					<div class="form-group">
-						<label for="dealer_price">Existencias en general</label>
-						<input type="number" class="form-control" id="dealer_price" name="dealer_price" value="{{ $existence_general }}" disabled>
+						<label for="general_existence">Existencias en general</label>
+						<input type="number" class="form-control" id="general_existence" name="general_existence" value="{{ $existence_general }}" disabled>
 					</div>
 				</div>
 				<div class="col-md-3">
