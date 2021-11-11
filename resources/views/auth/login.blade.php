@@ -16,7 +16,6 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row d-flex justify-content-center">
