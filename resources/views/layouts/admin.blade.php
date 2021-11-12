@@ -41,7 +41,7 @@
 					<!-- Nav items -->
 					<ul class="navbar-nav">
 						<li class="nav-item {{ Request::is('admin') ? 'active_page' : '' }}">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="{{ route('dashboard') }}">
 								<i class="ni ni-tv-2 {{ Request::is('admin') ? 'text-white' : 'text-primary' }}"></i>
 								<span class="nav-link-text {{ Request::is('admin') ? 'text-white' : '' }}">Inicio</span>
 							</a>

@@ -26,4 +26,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('inventario', [InventoryController::class, 'index'])->name('inventory.index');
     Route::get('inventario/nuevo-producto', [InventoryController::class, 'create'])->name('inventory.create');
     Route::post('inventario/nuevo-producto', [InventoryController::class, 'store'])->name('inventory.store');
+    Route::post('import-list-products', [InventoryController::class, 'importProducts'])->name('excel.import');
 });

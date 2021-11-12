@@ -15,20 +15,20 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('department');
-            $table->integer('public_price');
-            $table->integer('dealers');
-            $table->string('description');
-            $table->integer('existence_matriz');
-            $table->integer('existence_virrey');
-            $table->integer('existence_general');
-            $table->integer('pyscom_price');
-            $table->string('model');
+            $table->string('department')->nullable();
+            $table->string('public_price')->nullable();
+            $table->string('dealers')->nullable();
+            $table->text('description')->nullable();
+            $table->string('existence_matriz')->nullable();
+            $table->string('existence_virrey')->nullable();
+            $table->string('existence_general')->nullable();
+            $table->string('pyscom_price')->nullable();
+            $table->string('model')->nullable();
             $table->string('sat_key')->nullable();
             $table->string('sat_description')->nullable();
-            $table->integer('price_2x1');
-            $table->integer('gain_2x1');
-            $table->integer('normal_gain');
+            $table->string('price_2x1')->nullable();
+            $table->string('gain_2x1')->nullable();
+            $table->string('normal_gain')->nullable();
 
             $table->timestamps();
         });

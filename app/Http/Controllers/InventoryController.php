@@ -3,10 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreInventoryRequest;
+use App\Imports\ProductsImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class InventoryController extends Controller
 {
+
+    // public function importProducts($request Request)
+    // {
+
+    //     $file = $request->file('file');
+
+    //     Excel::import(new ProductsImport, $file);
+
+    //     return back()->with('success', 'Productos importados correctamente');
+
+    // }
+
+    public function importProducts(Request $request)
+    {
+        $file = $request->file('file');
+
+        Excel::import(new ProductsImport, $file);
+
+        return back()->with('success', 'Productos importados correctamente');
+    }
+
     /**
      * Display a listing of the resource.
      *
