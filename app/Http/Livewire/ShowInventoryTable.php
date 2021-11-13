@@ -2,12 +2,22 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ShowInventoryTable extends Component
 {
+
+    use WithPagination;
+
+    public $search = "";
+
     public function render()
     {
-        return view('livewire.show-inventory-table');
+        $products = Product::where('id', 'like', '%' .$this->search . '%')->orderBy('id', 'ASC')->
+        orWhere('department', 'like', '%' . $this->search . '%')->paginate(15);
+
+        return view('livewire.show-inventory-table', compact('products'));
     }
 }

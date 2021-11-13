@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -27,4 +28,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('inventario/nuevo-producto', [InventoryController::class, 'create'])->name('inventory.create');
     Route::post('inventario/nuevo-producto', [InventoryController::class, 'store'])->name('inventory.store');
     Route::post('import-list-products', [InventoryController::class, 'importProducts'])->name('excel.import');
+
+    //Productos
+    Route::get('producto/{slug}/editar', [ProductController::class, 'edit'])->name('product.edit');
+
+
 });

@@ -11,5 +11,5 @@ class Product extends Model
 
     protected $primaryKey = "sku";
 
-    protected $fillable = ['department', 'public_price', 'dealers', 'description', 'existence_matriz', 'existence_virrey', 'pyscom_price', 'model', 'existence_general', 'price_2x1', 'gain_2x1', 'normal_gain'];
+    protected $fillable = ['department', 'slug', 'public_price', 'dealers', 'description', 'existence_matriz', 'existence_virrey', 'pyscom_price', 'model', 'existence_general', 'price_2x1', 'gain_2x1', 'normal_gain'];
 }
