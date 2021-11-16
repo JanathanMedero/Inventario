@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -54,9 +55,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $product = Product::where('slug', $slug)->first();
+
+        return view('auth.product.edit', compact('product'));
     }
 
     /**
@@ -77,8 +80,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $product = Product::where('slug', $slug)->delete();
+
+        return back()->with('success', 'Producto eliminado correctamente');
     }
 }

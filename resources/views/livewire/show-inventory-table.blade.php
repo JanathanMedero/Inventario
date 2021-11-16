@@ -49,10 +49,19 @@
                     <td class="budget">{{ $product->existence_matriz }}</td>
                     <td class="budget">{{ $product->existence_virrey }}</td>
                     <td class="budget">{{ Str::limit($product->existence_general, 5) }}</td>
-                    <td class="budget">
-                        <a href="{{ route('product.edit', $product->slug) }}">
-                            <button type="button" class="btn btn-info">Editar producto</button>
-                        </a>
+                    <td class="budget d-flex">
+                        <div class="mr-4">
+                            <a href="{{ route('product.edit', $product->slug) }}">
+                                <button type="button" class="btn btn-info">Editar producto</button>
+                            </a>
+                        </div>
+                        <form class="form-delete" action="{{ route('product.destroy', $product->slug) }}" method="POST">
+                            @method("delete")
+                            @csrf
+                            <button type="submit" class="btn btn-danger text-white">
+                                <span class="btn-inner--text">Eliminar producto</span>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
@@ -63,17 +72,7 @@
 </div>
 @section('extra-js')
 
-{{-- <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
-
-@if(session()->has('delete'))
-<script>
-    Swal.fire(
-      'Eliminado',
-      'El producto fue eliminado exitosamente',
-      'success'
-      )
-  </script>
-  @endif
+<script src="{{ asset('assets/sweetalert2.all.min.js') }}"></script>
 
   <script>
     $('.form-delete').submit(function(e){
@@ -93,6 +92,6 @@
         }
     })
   });
-</script> --}}
+</script>
 
 @endsection

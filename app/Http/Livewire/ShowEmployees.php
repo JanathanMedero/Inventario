@@ -13,6 +13,12 @@ class ShowEmployees extends Component
     use WithPagination;
 
     public $search = "";
+    public $employees;
+
+    public function mount($employees)
+    {
+        $employees = $this->employees;
+    }
 
     public function render()
     {

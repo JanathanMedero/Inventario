@@ -31,5 +31,13 @@ class DatabaseSeeder extends Seeder
             'email'     => 'webmaster@pyscom.com',
             'password'  => Hash::make('admin'),
         ]);
+
+        DB::table('users')->insert([
+            'role_id'   => 2,
+            'name'      => 'Jose Alberto Avalos Villaseñor',
+            'slug'      =>  Str::slug('Jose Alberto Avalos Villaseñor'),
+            'email'     => 'test@pyscom.com',
+            'password'  => Hash::make('admin'),
+        ]);
     }
 }

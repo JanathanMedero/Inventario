@@ -98,6 +98,7 @@
             </thead>
             <tbody class="list">
 
+
                 @foreach($employees as $employe)
                 <tr>
                     <th scope="row">
@@ -111,12 +112,12 @@
                     <td class="budget">{{ $employe->role->role }}</td>
                     <td class="d-flex">
 
-                        <a type="button" class="btn btn-info text-white" href="{{ route('employe.edit', $employe->slug) }}">
+                        <a type="button" class="btn btn-info text-white" href="#">
                             <span class="btn-inner--icon"><i class="fas fa-user-edit"></i></span>
                             <span class="btn-inner--text">Editar empleado</span>
                         </a>
                         @if(Auth::user()->role_id === 1)
-                        <form class="form-delete" action="{{ route('employe.destroy', $employe->id) }}" method="POST">
+                        <form class="form-delete" action="#" method="POST">
                             @method("delete")
                             @csrf
                             <button type="submit" class="btn btn-danger text-white">
@@ -130,7 +131,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $employees->links('custom-pagination') }}
+        {{-- {{ $employees->links('custom-pagination') }} --}}
     </x-table>
 </div>
 

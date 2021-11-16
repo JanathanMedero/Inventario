@@ -1,5 +1,5 @@
 @extends('layouts.admin')
 
 @section('content')
-	@livewire('show-employees', ['employees' => $employees])
+	@livewire('show-product', ['product' => $product])
 @endsection

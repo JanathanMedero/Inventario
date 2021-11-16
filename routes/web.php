@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
 
     //Productos
     Route::get('producto/{slug}/editar', [ProductController::class, 'edit'])->name('product.edit');
+    Route::delete('producto/{slug}/eliminar', [ProductController::class, 'destroy'])->name('product.destroy');
 
 
 });

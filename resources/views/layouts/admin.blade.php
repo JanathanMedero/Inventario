@@ -137,6 +137,8 @@
 <!-- Argon JS -->
 <script src="{{ asset('assets/dashboard/js/argon.js') }}"></script>
 
+<script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
+
 @yield('extra-js')
 
 @livewireScripts

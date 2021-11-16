@@ -4,10 +4,11 @@ namespace App\Http\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
-use Illuminate\Support\Str;
 
-class CreateProduct extends Component
+class ShowProduct extends Component
 {
+
+    public $product;
 
     public $slug                = '';
     public $department          = '';
@@ -56,23 +57,19 @@ class CreateProduct extends Component
         'normal_gain.required'              => 'Error al calcular la ganancia normal',
     ];
 
-    public function mount()
-    {
-        $this->slug = Str::random(25);
-    }
-
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
     }
- 
-    public function saveProduct()
+
+    public function updateProduct()
     {
         $validatedData = $this->validate();
  
-        Product::create([
+        $product = Product::where('slug', $this->slug)->first();
+
+        $product->update([
             'department'        => $this->department,
-            'slug'              => $this->slug,
             'public_price'      => $this->public_price,
             'dealers'           => $this->dealers,
             'description'       => $this->description,
@@ -91,9 +88,28 @@ class CreateProduct extends Component
         return redirect()->route('inventory.index')->with('success', 'Producto creado correctamente');
     }
 
+    public function mount($product)
+    {
+        $this->department           = $product->department;
+        $this->slug                 = $product->slug;
+        $this->public_price         = $product->public_price;
+        $this->dealers              = $product->dealers;
+        $this->description          = $product->description;
+        $this->existence_matriz     = $product->existence_matriz;
+        $this->existence_virrey     = $product->existence_virrey;
+        $this->pyscom_price         = $product->pyscom_price;
+        $this->model                = $product->model;
+        $this->sat_key              = $product->sat_key;
+        $this->sat_description      = $product->sat_description;
+        $this->existence_general    = $product->existence_general;
+        $this->price_2x1            = $product->price_2x1;
+        $this->gain_2x1             = $product->gain_2x1;
+        $this->normal_gain          = $product->normal_gain;
+    }
+
     public function render()
     {
-        return view('livewire.create-product');
+        return view('livewire.show-product');
     }
 
     public function changeMatriz($value)
