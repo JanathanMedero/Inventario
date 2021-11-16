@@ -22,6 +22,8 @@ Route::middleware(['auth'])->group(function () {
 
     //Empleados
     Route::get('empleados', [EmployeController::class, 'index'])->name('employe.index');
+    Route::post('add/empleado', [EmployeController::class, 'store'])->name('employe.store');
+    Route::delete('empleado/{slug}/delete', [EmployeController::class, 'delete'])->name('employe.destroy');
 
     //Inventario
     Route::get('inventario', [InventoryController::class, 'index'])->name('inventory.index');

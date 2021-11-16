@@ -5,8 +5,10 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use Livewire\Component;
 use Auth;
+use Illuminate\Support\Str;
 use App\Models\Role;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Hash;
 
 class ShowEmployees extends Component
 {
