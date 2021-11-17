@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateEmployeRequest;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class EmployeController extends Controller
 {
@@ -37,4 +39,34 @@ class EmployeController extends Controller
 
         return redirect()->route('employe.index')->with('success', 'Empleado creado correctamente');
     }
+
+    public function edit($slug)
+    {
+        $employe    = User::where('slug', $slug)->first();
+
+        $roles      = Role::all();
+
+        return view('auth.employees.edit', compact('employe', 'roles'));
+    }
+
+    public function update(UpdateEmployeRequest $request, $slug)
+    {
+        $employe = User::where('slug', $slug)->first();
+
+        $employe->name      = $request->name;
+        $employe->slug      = Str::slug($request->name);
+        $employe->email     = $request->email;
+        $employe->role_id   = $request->role_id;
+
+        if ($request->password)
+        {
+            $employe->password = Hash::make($request->password);
+        }
+
+        $employe->save();
+
+        return redirect()->route('employe.index')->with('success', 'Empleado actualizado correctamente');
+
+    }
+
 }
