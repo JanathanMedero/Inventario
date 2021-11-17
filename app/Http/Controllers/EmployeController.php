@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Auth;
 
 class EmployeController extends Controller
 {
@@ -15,7 +16,14 @@ class EmployeController extends Controller
     {
         $employees = User::all();
 
-        return view('auth.employees.index', compact('employees'));
+        if (Auth::user()->role_id == 1)
+        {
+            return view('auth.employees.index', compact('employees'));
+        }else
+        {
+            abort(403, 'Acción no autorizada');
+        }
+
     }
 
     public function delete($slug)
