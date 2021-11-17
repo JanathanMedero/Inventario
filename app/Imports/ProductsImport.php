@@ -24,13 +24,13 @@ class ProductsImport implements ToModel
             'existence_matriz'  => $row[4],
             'existence_virrey'  => $row[5],
             'existence_general' => $row[6],
-            'price_2x1'         => $row[9],
-            'gain_2x1'          => $row[10],
-            'pyscom_price'      => $row[11],
-            'normal_gain'       => $row[12],
-            'model'             => $row[13],
-            'sat_key'           => $row[14],
-            'sat_description'   => $row[15],
+            'pyscom_price'      => $row[7],
+            'normal_gain'       => $row[8],
+            'gain_2x1'          => $row[9],
+            'price_2x1'         => $row[10],
+            'model'             => $row[11],
+            'sat_key'           => $row[12],
+            'sat_description'   => $row[13],
         ]);
     }
 }
