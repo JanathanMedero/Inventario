@@ -24,9 +24,9 @@
             <thead class="thead-light">
                 <tr>
                     <th scope="col" class="sort" data-sort="name">SKU</th>
-                    <th scope="col" class="sort" data-sort="budget text-center">Departamento</th>
+                    <th scope="col" class="sort" data-sort="budget text-center">Descripción</th>
                     <th scope="col" class="sort" data-sort="status">Precio público</th>
-                    <th scope="col" class="sort" data-sort="status">Distribuidores</th>
+                    <th scope="col" class="sort" data-sort="status">Precio a distribuidores</th>
                     <th scope="col" class="sort" data-sort="completion">Existencia (Matríz)</th>
                     <th scope="col" class="sort" data-sort="completion">Existencia (Virrey)</th>
                     <th scope="col" class="sort" data-sort="completion">Existencia General</th>
@@ -43,8 +43,8 @@
                             </div>
                         </div>
                     </th>
-                    <td class="budget">{{ $product->department }}</td>
-                    <td class="budget">{{ $product->public_price }}</td>
+                    <td class="budget">{{ Str::limit($product->description, 50) }}</td>
+                    <td class="budget">$ {{ $product->public_price }}</td>
                     <td class="budget">{{ $product->dealers }}</td>
                     <td class="budget">{{ $product->existence_matriz }}</td>
                     <td class="budget">{{ $product->existence_virrey }}</td>

@@ -16,7 +16,8 @@ class ShowInventoryTable extends Component
     public function render()
     {
         $products = Product::where('id', 'like', '%' .$this->search . '%')->orderBy('id', 'DESC')->
-        orWhere('department', 'like', '%' . $this->search . '%')->paginate(15);
+        orWhere('department', 'like', '%' . $this->search . '%')->
+        orWhere('description', 'like', '%' . $this->search . '%')->paginate(15);
 
         return view('livewire.show-inventory-table', compact('products'));
     }

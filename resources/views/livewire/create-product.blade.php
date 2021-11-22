@@ -4,7 +4,7 @@
 	</x-card>
 
 	<x-card>
-		<form wire:submit.prevent="saveProduct">
+		<form wire:submit.prevent="saveProduct" enctype= multipart/form-data>
 			@csrf
 			<div class="row">
 				<div class="col-md-4">
@@ -38,6 +38,30 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="col-md-8 form-group">
+					<label for="image-file">Seleccione una imágen para el producto (Opcional)</label>
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" id="image-file" lang="es" wire:model="image">
+						@error('image') <span class="error" style="color: red;">{{ $message }}</span> @enderror
+						<label class="custom-file-label" for="image-file">Select File</label>
+					</div>
+				</div>
+
+				@if ($image)
+				<div class="col-md-4">
+					<div class="row">
+						<div class="col-md-12"><p><strong>Vista previa de la imágen</strong></p></div>
+						<div class="col-md-12">
+							<img src="{{ $image->temporaryUrl() }}" style="max-width: 200px; max-height: 200px;">
+						</div>
+					</div>
+				</div>
+				@endif
+
+			</div>
+
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
@@ -56,7 +80,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="pyscom_price">Inversion de Pyscom (Precio * 1.16 + 10)</label>
-						<input type="number" class="form-control" id="pyscom_price" name="pyscom_price" value="{{ $pyscom_price }}" wire:model="pyscom_price" wire:change="changePyscomPrice($event.target.value)">
+						<input type="number" class="form-control" id="pyscom_price" name="pyscom_price" value="{{ $pyscom_price }}" wire:model="pyscom_price" wire:change="changePricePyscom($event.target.value)">
 						@error('pyscom_price') <span class="error" style="color: red;">{{ $message }}</span> @enderror
 					</div>
 				</div>

@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="dealers">Distribuidores</label>
+                        <label for="dealers">Precio a distribuidor</label>
                         <input type="number" class="form-control" id="dealers" placeholder="Ingrese el precio a distribuidores" name="dealers" wire:model="dealers">
                         @error('dealers') <span class="error" style="color: red;">{{ $message }}</span> @enderror
                     </div>
@@ -56,7 +56,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="pyscom_price">Inversion de Pyscom (Precio * 1.16 + 10)</label>
-                        <input type="number" step="0.01" class="form-control" id="pyscom_price" name="pyscom_price" wire:model="pyscom_price" wire:change="changePyscomPrice($event.target.value)">
+                        <input type="number" step="any" class="form-control" id="pyscom_price" name="pyscom_price" wire:model="pyscom_price" wire:change="changePyscomPrice($event.target.value)">
                         @error('pyscom_price') <span class="error" style="color: red;">{{ $message }}</span> @enderror
                     </div>
                 </div>

@@ -5,9 +5,13 @@ namespace App\Http\Livewire;
 use App\Models\Product;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class CreateProduct extends Component
 {
+
+    use WithFileUploads;
 
     public $slug                = '';
     public $department          = '';
@@ -24,6 +28,8 @@ class CreateProduct extends Component
     public $pyscom_price        = 0;
     public $gain_2x1            = 0;
     public $normal_gain         = 0;
+    public $shipping            = 0;
+    public $image               = '';
 
     protected $rules = [
         'department'            => 'required',
@@ -39,6 +45,7 @@ class CreateProduct extends Component
         'price_2x1'             => 'required',
         'gain_2x1'              => 'required',
         'normal_gain'           => 'required',
+        'image'                 => 'image|mimes:jpeg,png,svg,jpg|max:2048',
     ];
 
     protected $messages = [
@@ -54,6 +61,7 @@ class CreateProduct extends Component
         'price_2x1.required'                => 'Error al calcular el precio al 2x1',
         'gain_2x1.required'                 => 'Error al calcular la ganancia al 2x1',
         'normal_gain.required'              => 'Error al calcular la ganancia normal',
+        'image.image'                       => 'Archivo no admitido'
     ];
 
     public function mount()
@@ -69,6 +77,8 @@ class CreateProduct extends Component
     public function saveProduct()
     {
         $validatedData = $this->validate();
+
+        $image = $this->image->store('images-products', 'public');
  
         Product::create([
             'department'        => $this->department,
@@ -76,6 +86,7 @@ class CreateProduct extends Component
             'public_price'      => $this->public_price,
             'dealers'           => $this->dealers,
             'description'       => $this->description,
+            'image'             => $image,
             'existence_matriz'  => $this->existence_matriz,
             'existence_virrey'  => $this->existence_virrey,
             'existence_general' => $this->existence_general,
@@ -153,19 +164,15 @@ class CreateProduct extends Component
 
     }
 
-    public function changePyscomPrice($value)
+    public function changePricePyscom($value)
     {
-        if ( $value == "" || $value < 0 || $value == 0 ){
+        if ( $value == "" || $value < 0 )
+        {
             $this->pyscom_price = 0;
-        }else{
-            $total = ($value * 1.16 + 10);
-
-            $this->pyscom_price = $total;
         }
 
         if ( $this->public_price > 0 &&  $this->pyscom_price > 0)
         {
-
             $price = $this->pyscom_price * 2;
 
             $total = ($this->public_price - $price);
@@ -175,13 +182,12 @@ class CreateProduct extends Component
             $this->normal_gain = ($this->public_price - $this->pyscom_price);
         }
 
-        if ( $this->pyscom_price == 0)
+        if ( $this->public_price == 0)
         {
             $this->gain_2x1 = 0;
 
             $this->normal_gain = 0;
         }
-
     }
 
 }
