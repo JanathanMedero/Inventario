@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -82,6 +83,13 @@ class ProductController extends Controller
      */
     public function destroy($slug)
     {
+        $product = Product::where('slug', $slug)->first();
+
+        if (Storage::disk('public')->exists($product->image))
+        {
+            Storage::disk('public')->delete($product->image);
+        }
+
         $product = Product::where('slug', $slug)->delete();
 
         return back()->with('success', 'Producto eliminado correctamente');
