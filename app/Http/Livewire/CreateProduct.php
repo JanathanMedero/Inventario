@@ -61,7 +61,8 @@ class CreateProduct extends Component
         'price_2x1.required'                => 'Error al calcular el precio al 2x1',
         'gain_2x1.required'                 => 'Error al calcular la ganancia al 2x1',
         'normal_gain.required'              => 'Error al calcular la ganancia normal',
-        'image.image'                       => 'Archivo no admitido'
+        'image.image'                       => 'Archivo no admitido',
+        'image.max'                         => 'La imágen no debe pesar mas de 2 MB'
     ];
 
     public function mount()
@@ -78,7 +79,14 @@ class CreateProduct extends Component
     {
         $validatedData = $this->validate();
 
+        if(!empty($this->image))
+        {
         $image = $this->image->store('images-products', 'public');
+        }else
+        {
+            $image = null;
+        }
+
  
         Product::create([
             'department'        => $this->department,

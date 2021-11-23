@@ -3,6 +3,8 @@
         <h1 class="mb-0">Datos del producto</h1>
     </x-card>
 
+    <x-alerts></x-alerts>
+
     <x-card>
         <form wire:submit.prevent="updateProduct">
             @csrf
@@ -38,6 +40,42 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-8 form-group">
+                    <label for="image-file">Seleccione una imágen para el producto (Opcional)</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="image-file" lang="es" wire:model="image">
+                        @error('image') <span class="error" style="color: red;">{{ $message }}</span> @enderror
+                        <label class="custom-file-label" for="image-file">Select File</label>
+                    </div>
+                </div>
+
+                @if ($product->image != null)
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-5"><p><strong>Vista previa de la imágen</strong></p></div>
+                        <div class="col-md-6 text-center">
+                            <button type="button" class="btn btn-danger btn-sm" wire:click="removeImage">Eliminar imágen</button>
+                        </div>
+                        <div class="col-md-12 mb-4 d-flex justify-content-center">
+                            <img src="{{ asset('storage/'.$product->image) }}" style="max-width: 200px; max-height: 200px;">
+                        </div>
+                    </div>
+                </div>
+                @else
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12"><p><strong>No se ha cargado una imágen para este producto</strong></p></div>
+                        <div class="col-md-12">
+                            <img src="{{ asset('storage/images-products/no-image.png') }}" style="max-width: 200px; max-height: 200px;">
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+            </div>
+
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">

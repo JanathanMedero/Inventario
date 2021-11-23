@@ -44,9 +44,9 @@
 					<label for="image-file">Seleccione una imágen para el producto (Opcional)</label>
 					<div class="custom-file">
 						<input type="file" class="custom-file-input" id="image-file" lang="es" wire:model="image">
-						@error('image') <span class="error" style="color: red;">{{ $message }}</span> @enderror
 						<label class="custom-file-label" for="image-file">Select File</label>
 					</div>
+					@error('image') <span class="error" style="color: red;">{{ $message }}</span> @enderror
 				</div>
 
 				@if ($image)

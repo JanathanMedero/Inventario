@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('public_price')->nullable();
             $table->string('dealers')->nullable();
             $table->text('description')->nullable();
-            $table->string('image')->default('no-image.png');
+            $table->string('image')->nullable();
             $table->string('existence_matriz')->nullable();
             $table->string('existence_virrey')->nullable();
             $table->string('existence_general')->nullable();

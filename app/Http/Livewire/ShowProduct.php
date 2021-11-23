@@ -4,9 +4,15 @@ namespace App\Http\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
+use File;
+use Illuminate\Support\Str;
 
 class ShowProduct extends Component
 {
+
+    use WithFileUploads;
 
     public $product;
 
@@ -25,6 +31,28 @@ class ShowProduct extends Component
     public $pyscom_price        = 0;
     public $gain_2x1            = 0;
     public $normal_gain         = 0;
+    public $image               = '';
+
+
+    public function mount($product)
+    {
+        $this->department           = $product->department;
+        $this->slug                 = $product->slug;
+        $this->public_price         = $product->public_price;
+        $this->dealers              = $product->dealers;
+        $this->description          = $product->description;
+        $this->existence_matriz     = $product->existence_matriz;
+        $this->existence_virrey     = $product->existence_virrey;
+        $this->pyscom_price         = $product->pyscom_price;
+        $this->model                = $product->model;
+        $this->sat_key              = $product->sat_key;
+        $this->sat_description      = $product->sat_description;
+        $this->existence_general    = $product->existence_general;
+        $this->price_2x1            = $product->price_2x1;
+        $this->gain_2x1             = $product->gain_2x1;
+        $this->normal_gain          = $product->normal_gain;
+
+    }
 
     protected $rules = [
         'department'            => 'required',
@@ -64,15 +92,38 @@ class ShowProduct extends Component
 
     public function updateProduct()
     {
+
         $validatedData = $this->validate();
  
         $product = Product::where('slug', $this->slug)->first();
+
+        if (Storage::disk('public')->exists($product->image)){
+
+            Storage::disk('public')->delete($product->image);
+
+            $image = $this->image->store('images-products', 'public');
+
+        }else
+        {
+            if ($this->image != null) {
+
+                $image = $this->image->store('images-products', 'public');
+
+            }else
+            {
+                $image = $this->image = null;
+            }
+
+            
+        }
+
 
         $product->update([
             'department'        => $this->department,
             'public_price'      => $this->public_price,
             'dealers'           => $this->dealers,
             'description'       => $this->description,
+            'image'             => $image,
             'existence_matriz'  => $this->existence_matriz,
             'existence_virrey'  => $this->existence_virrey,
             'existence_general' => $this->existence_general,
@@ -88,23 +139,23 @@ class ShowProduct extends Component
         return redirect()->route('inventory.index')->with('success', 'Producto creado correctamente');
     }
 
-    public function mount($product)
+
+    public function removeImage()
     {
-        $this->department           = $product->department;
-        $this->slug                 = $product->slug;
-        $this->public_price         = $product->public_price;
-        $this->dealers              = $product->dealers;
-        $this->description          = $product->description;
-        $this->existence_matriz     = $product->existence_matriz;
-        $this->existence_virrey     = $product->existence_virrey;
-        $this->pyscom_price         = $product->pyscom_price;
-        $this->model                = $product->model;
-        $this->sat_key              = $product->sat_key;
-        $this->sat_description      = $product->sat_description;
-        $this->existence_general    = $product->existence_general;
-        $this->price_2x1            = $product->price_2x1;
-        $this->gain_2x1             = $product->gain_2x1;
-        $this->normal_gain          = $product->normal_gain;
+        $product = Product::where('slug', $this->slug)->first();
+
+        if (Storage::disk('public')->exists($product->image))
+        {
+            Storage::disk('public')->delete($product->image);
+
+            $product->image = null;
+            $product->save();
+
+            $this->image = null;
+        }
+
+        return redirect()->route('product.edit', $product->slug)->with('success', 'Imágen eliminada correctamente');
+
     }
 
     public function render()
