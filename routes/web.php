@@ -5,6 +5,7 @@ use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -36,6 +37,9 @@ Route::middleware(['auth'])->group(function () {
     //Productos
     Route::get('producto/{slug}/editar', [ProductController::class, 'edit'])->name('product.edit');
     Route::delete('producto/{slug}/eliminar', [ProductController::class, 'destroy'])->name('product.destroy');
+
+    //Excel
+    Route::get('generar-reporte/excel', [ReportController::class, 'excel'])->name('report.excel');
 
 
 });

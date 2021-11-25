@@ -5,19 +5,32 @@
             <div class="col-md-2">
                 <h3 class="display-4 mb-4">Inventario</h3>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-5">
                 <input type="text" class="form-control" wire:model="search" placeholder="Buscar producto">
             </div>
-            <div class="col-md-2 d-flex justify-content-end">
-                <div>
-                    <a href="{{ route('inventory.create') }}">
-                        <button type="button" class="btn btn-success text-white">
-                            <span class="btn-inner--icon"><i class="fas fa-box"></i></span>
-                            <span class="btn-inner--text">Agregar Producto</span>
-                        </button>
-                    </a>
+
+            <div class="col-md-5" class="d-flex justify-content-between">
+                <div class="row">
+                    <div class="col-md-5 d-flex justify-content-center">
+                        <a href="{{ route('inventory.create') }}">
+                            <button type="button" class="btn btn-success text-white">
+                                <span class="btn-inner--icon"><i class="fas fa-box"></i></span>
+                                <span class="btn-inner--text">Agregar Producto</span>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="col-md-7 d-flex justify-content-center">
+                        <a href="{{ route('report.excel') }}">
+                            <button type="button" class="btn btn-info text-white">
+                                <span class="btn-inner--icon"><i class="fas fa-file-excel"></i></span>
+                                <span class="btn-inner--text">Generar reporte de excel</span>
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
+
+            
         </div>
 
         <table class="table align-items-center">
@@ -43,7 +56,7 @@
                             </div>
                         </div>
                     </th>
-                    <td class="budget">{{ Str::limit($product->description, 50) }}</td>
+                    <td class="budget">{{ Str::limit($product->description, 25) }}</td>
                     <td class="budget">$ {{ $product->public_price }}</td>
                     <td class="budget">{{ $product->dealers }}</td>
                     <td class="budget">{{ $product->existence_matriz }}</td>
@@ -74,7 +87,7 @@
 
 <script src="{{ asset('assets/sweetalert2.all.min.js') }}"></script>
 
-  <script>
+<script>
     $('.form-delete').submit(function(e){
         e.preventDefault();
         Swal.fire({
