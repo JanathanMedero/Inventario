@@ -168,9 +168,11 @@ class ProductController extends Controller
     {
         $product = Product::where('slug', $slug)->first();
 
-        if (Storage::disk('public')->exists($product->image))
+        if (file_exists(public_path('imagenes/'.$product->image)))
         {
-            Storage::disk('public')->delete($product->image);
+            if ($product->image != 'no-image.png') {
+                unlink(public_path('imagenes/'.$product->image));
+            }
         }
 
         $product = Product::where('slug', $slug)->delete();
