@@ -35,7 +35,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('import-list-products', [InventoryController::class, 'importProducts'])->name('excel.import');
 
     //Productos
+    Route::post('producto/creado', [ProductController::class, 'store'])->name('product.store');
     Route::get('producto/{slug}/editar', [ProductController::class, 'edit'])->name('product.edit');
+    Route::put('producto/{slug}/actualizado', [ProductController::class, 'update'])->name('product.update');
     Route::delete('producto/{slug}/eliminar', [ProductController::class, 'destroy'])->name('product.destroy');
 
     //Excel

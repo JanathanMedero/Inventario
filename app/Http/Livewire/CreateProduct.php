@@ -31,47 +31,47 @@ class CreateProduct extends Component
     public $shipping            = 0;
     public $image               = '';
 
-    protected $rules = [
-        'department'            => 'required',
-        'slug'                  => 'required',
-        'public_price'          => 'required',
-        'dealers'               => 'required',
-        'description'           => 'required',
-        'existence_matriz'      => 'required',
-        'existence_virrey'      => 'required',
-        'pyscom_price'          => 'required',
-        'existence_general'     => 'required',
-        'price_2x1'             => 'required',
-        'gain_2x1'              => 'required',
-        'normal_gain'           => 'required',
-        'image'                 => 'image|mimes:jpeg,png,svg,jpg|max:2048',
-    ];
+    // protected $rules = [
+    //     'department'            => 'required',
+    //     'slug'                  => 'required',
+    //     'public_price'          => 'required',
+    //     'dealers'               => 'required',
+    //     'description'           => 'required',
+    //     'existence_matriz'      => 'required',
+    //     'existence_virrey'      => 'required',
+    //     'pyscom_price'          => 'required',
+    //     'existence_general'     => 'required',
+    //     'price_2x1'             => 'required',
+    //     'gain_2x1'              => 'required',
+    //     'normal_gain'           => 'required',
+    //     'image'                 => 'image|mimes:jpeg,png,svg,jpg|max:2048',
+    // ];
 
-    protected $messages = [
-        'department.required'               => 'Ingrese el departamento del producto',
-        'public_price.required'             => 'Ingrese el precio público',
-        'dealers.required'                  => 'Ingrese el precio para proveedores',
-        'description.required'              => 'Ingrese la descripción del producto',
-        'existence_matriz.required'         => 'Ingrese las existencias que hay en matriz',
-        'existence_virrey.required'         => 'Ingrese las existencias que hay en virrey',
-        'pyscom_price.required'             => 'Ingrese la inversión de Pyscom',
-        'existence_general.required'        => 'Error al calcular la cantidad total',
-        'price_2x1.required'                => 'Error al calcular el precio al 2x1',
-        'gain_2x1.required'                 => 'Error al calcular la ganancia al 2x1',
-        'normal_gain.required'              => 'Error al calcular la ganancia normal',
-        'image.image'                       => 'Archivo no admitido',
-        'image.max'                         => 'La imágen no debe pesar mas de 2 MB'
-    ];
+    // protected $messages = [
+    //     'department.required'               => 'Ingrese el departamento del producto',
+    //     'public_price.required'             => 'Ingrese el precio público',
+    //     'dealers.required'                  => 'Ingrese el precio para proveedores',
+    //     'description.required'              => 'Ingrese la descripción del producto',
+    //     'existence_matriz.required'         => 'Ingrese las existencias que hay en matriz',
+    //     'existence_virrey.required'         => 'Ingrese las existencias que hay en virrey',
+    //     'pyscom_price.required'             => 'Ingrese la inversión de Pyscom',
+    //     'existence_general.required'        => 'Error al calcular la cantidad total',
+    //     'price_2x1.required'                => 'Error al calcular el precio al 2x1',
+    //     'gain_2x1.required'                 => 'Error al calcular la ganancia al 2x1',
+    //     'normal_gain.required'              => 'Error al calcular la ganancia normal',
+    //     'image.image'                       => 'Archivo no admitido',
+    //     'image.max'                         => 'La imágen no debe pesar mas de 2 MB'
+    // ];
 
     public function mount()
     {
         $this->slug = Str::random(25);
     }
 
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-    }
+    // public function updated($propertyName)
+    // {
+    //     $this->validateOnly($propertyName);
+    // }
  
     public function saveProduct()
     {

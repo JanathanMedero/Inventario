@@ -7,7 +7,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>Inventario Pyscom</title>
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
@@ -34,41 +34,14 @@
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
-                            {{-- <div class="collapse navbar-collapse" id="navbarScroll">
-                                <ul class="navbar-nav ml-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Bienvenido: {{ Auth::user()->name }}
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li>
-                                                
-                                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                                Cerrar Sesión
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
-
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div> --}}
+                        </div>
+                        @endauth
                     </div>
-                    @endauth
                 </div>
-            </div>
-        </nav>
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-</body>
-</html>
+            </nav>
+            <main class="py-4">
+                @yield('content')
+            </main>
+        </div>
+    </body>
+    </html>

@@ -85,10 +85,10 @@ class ShowProduct extends Component
         'normal_gain.required'              => 'Error al calcular la ganancia normal',
     ];
 
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-    }
+    // public function updated($propertyName)
+    // {
+    //     $this->validateOnly($propertyName);
+    // }
 
     public function updateProduct()
     {
