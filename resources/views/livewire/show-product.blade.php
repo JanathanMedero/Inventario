@@ -48,14 +48,27 @@
                 </div>
 
                 @if ($product->image != null)
+                {{-- <form method="POST" enctype="multipart/form-data" action="{{ route('product.image.delete', $product->slug) }}">
+                    @method("PUT")
+                    @csrf --}}
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-5"><p><strong>Vista previa de la imágen</strong></p></div>
+                            <div class="col-md-6 text-center">
+                                {{-- <button type="submit" class="btn btn-danger btn-sm">Eliminar imágen</button> --}}
+                            </div>
+                            <div class="col-md-12 mb-4 d-flex justify-content-center">
+                                <img src="{{ asset('imagenes/'.$product->image)}}" style="max-width: 200px; max-height: 200px;">
+                            </div>
+                        </div>
+                    </div>
+                {{-- </form> --}}
+                @elseif($product->image == null)
                 <div class="col-md-4">
                     <div class="row">
-                        <div class="col-md-5"><p><strong>Vista previa de la imágen</strong></p></div>
-                        <div class="col-md-6 text-center">
-                            <button type="button" class="btn btn-danger btn-sm" wire:click="removeImage">Eliminar imágen</button>
-                        </div>
-                        <div class="col-md-12 mb-4 d-flex justify-content-center">
-                            <img src="{{ asset('imagenes/'.$product->image)}}" style="max-width: 200px; max-height: 200px;">
+                        <div class="col-md-12"><p><strong>No se ha cargado una imágen para este producto</strong></p></div>
+                        <div class="col-md-12">
+                            <img src="{{ asset('imagenes/no-image.png') }}" style="max-width: 200px; max-height: 200px;">
                         </div>
                     </div>
                 </div>
@@ -90,7 +103,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="pyscom_price">Inversion de Pyscom (Precio * 1.16 + 10)</label>
-                        <input type="number" step="any" class="form-control" id="pyscom_price" name="pyscom_price" wire:model="pyscom_price" wire:change="changePyscomPrice($event.target.value)">
+                        <input type="number" step="any" class="form-control" id="pyscom_price" name="pyscom_price" wire:model="pyscom_price">
                         @error('pyscom_price') <span class="error" style="color: red;">{{ $message }}</span> @enderror
                     </div>
                 </div>

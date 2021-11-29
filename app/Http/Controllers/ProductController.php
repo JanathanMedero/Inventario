@@ -73,7 +73,7 @@ class ProductController extends Controller
             'normal_gain'       => $request->normal_gain,
         ]);
         
-        return redirect()->route('inventory.index');
+        return redirect()->route('inventory.index')->with('success', 'Producto agregado correctamente');
 
     }
 
@@ -119,6 +119,10 @@ class ProductController extends Controller
         {
             $extension = $request->file('image')->extension();
 
+            if ($product->image == null) {
+                $product->image = 'no-image.png';
+            }
+
             if (file_exists(public_path('imagenes/'.$product->image)))
             {
                 if ($product->image != 'no-image.png') {
@@ -131,7 +135,11 @@ class ProductController extends Controller
             $file->move(public_path().'/imagenes/', $name);
 
             $image = $name;
-        }else
+        }elseif ($product->image != 'no-image.png') 
+        {
+            $image = $product->image;
+        }
+        else
         {
             $image = 'no-image.png';
         }
@@ -168,6 +176,10 @@ class ProductController extends Controller
     {
         $product = Product::where('slug', $slug)->first();
 
+        if ($product->image == null) {
+            $product->image = 'no-image.png';
+        }
+
         if (file_exists(public_path('imagenes/'.$product->image)))
         {
             if ($product->image != 'no-image.png') {
@@ -178,5 +190,10 @@ class ProductController extends Controller
         $product = Product::where('slug', $slug)->delete();
 
         return back()->with('success', 'Producto eliminado correctamente');
+    }
+
+    public function deleteImage($slug)
+    {
+        $product = Product::where('slug', $slug)->first();
     }
 }

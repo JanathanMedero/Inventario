@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('producto/{slug}/editar', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('producto/{slug}/actualizado', [ProductController::class, 'update'])->name('product.update');
     Route::delete('producto/{slug}/eliminar', [ProductController::class, 'destroy'])->name('product.destroy');
+    Route::put('producto/{slug}/imagen/eliminada', [ProductController::class, 'deleteImage'])->name('product.image.delete');
 
     //Excel
     Route::get('generar-reporte/excel', [ReportController::class, 'excel'])->name('report.excel');
